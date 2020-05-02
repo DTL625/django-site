@@ -3,12 +3,10 @@
     <div>
         <p class="post_title">{{ post.title|safe|linebreaksbr }}</p>
     </div>
-
-    <hr>
     <div>
         <p class="post_content">{{ post.text|safe|linebreaksbr }}</p>
     </div>
-
+    <hr>
     <div class="date pretty_font">
         Publish at:
         {% if post.published_date %}
@@ -59,19 +57,16 @@
                     <a class="bth btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
-                    <a class="bth btn-primary" href="{% url 'comment_approve' pk=comment.pk %}">
+                    <a class="bth btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 {% endif %}
                 <p>{{ comment.text|safe|linebreaks }}</p>
-                <p>Posted by: {{ comment.author }}</p>
+                <p><strong>Posted by:</strong> {{ comment.author }} {{ comment.create_date|date:"Y-m-d h:i:s"}}</p>
             {% endif %}
         {% empty %}
             <p>no comments</p>
         {% endfor %}
     </div>
-
-
-
 
 {% endblock %}

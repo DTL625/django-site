@@ -17,11 +17,10 @@ class PostForm(forms.ModelForm):
 class CommentsForm(forms.ModelForm):
 
     class Meta():
-        model = Post
+        model = Comment
         fields = ('author', 'text')
-
 
         widgets = {
             'author': forms.TextInput(attrs={'class':'textinputclass'}),
-            'text': forms.Textarea(attrs={'class':'editable medium-editor-textarea postcontent'})
+            'text': forms.Textarea(attrs={'class':'editable medium-editor-textarea post_content'})
         }
