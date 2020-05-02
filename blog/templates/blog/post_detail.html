@@ -1,25 +1,55 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <h1 class="post_title loader"></h1>
-    {% if post.published_date %}
-        <div class="date postdate">
-            {{ post.published_date }}
-        </div>
-    {% else %}
-        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish </a>
-    {% endif %}
+    <div>
+        <p class="post_title">{{ post.title|safe|linebreaksbr }}</p>
+    </div>
 
-    <p class="post_content">{{ post.title|safe|linebreaksbr }}</p>
-    {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
-            <span class="glyphicon glyphicon-pencil"></span>
-        </a>
-        <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
-            <span class="glyphicon glyphicon-remove"></span>
-        </a>
-    {% endif %}
     <hr>
-    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}"></a>
+    <div>
+        <p class="post_content">{{ post.text|safe|linebreaksbr }}</p>
+    </div>
+
+    <div class="date pretty_font">
+        Publish at:
+        {% if post.published_date %}
+            {{ post.published_date }}
+        {% else %}
+            --
+        {% endif %}
+    </div>
+
+    {# button section#}
+    <div style="text-align: right">
+        {% if post.published_date %}
+            <a class="btn btn-primary" href="{% url 'post_publish' pk=post.pk %}">
+                <span class="glyphicon glyphicon-minus-sign"></span>
+            </a>
+        {% else %}
+            <a class="btn btn-primary" href="{% url 'post_publish' pk=post.pk %}">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+        {% endif %}
+
+
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'post_edit' pk=post.pk %}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a class="btn btn-primary" href="{% url 'post_remove' pk=post.pk %}">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        {% endif %}
+    </div>
+
+
+    <div>
+        <p class="comment_title"> Comments </p>
+    </div>
+
+    <hr>
+
+    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+
     <div class="container">
         {% for comment in post.comments.all %}
             <br>
@@ -36,7 +66,7 @@
                 <p>{{ comment.text|safe|linebreaks }}</p>
                 <p>Posted by: {{ comment.author }}</p>
             {% endif %}
-            {% empty %}
+        {% empty %}
             <p>no comments</p>
         {% endfor %}
     </div>
