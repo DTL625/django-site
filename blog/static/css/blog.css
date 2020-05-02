@@ -13,6 +13,26 @@
     margin-right: auto;
 }
 
+.post_date{
+  text-align: center;
+}
+
+.post_title {
+  font-family: 'Comic Neue', cursive;
+  font-size: 3em;
+  text-align: center;
+}
+
+.post_content{
+  font-family: 'Montserrat';
+  font-size: 1.5em;
+}
+
+.btn_comment{
+  position: absolute;
+  right: 0px;
+}
+
 html,
 body {
   background-color: #404456;
