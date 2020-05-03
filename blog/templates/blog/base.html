@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
-    {# Bootstrap #}
+    {# Bootstrap csc & js#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
     {# Medium Style Editor #}
     <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
@@ -25,20 +30,30 @@
         <ul class="nav navbar-nav">
             <li><a class="navbar-brand big_brand" href="{% url 'post_list' %}">My Blog</a></li>
             <li><a href="{% url 'post_list' %}">My Post</a></li>
-{#            <li><a href="https://www.github.com">Github</a></li>#}
-{#            <li><a href="https://www.linkedin.com">Linkedin</a></li>#}
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
-                <li><a href="{% url 'post_new' %}">New Post</a></li>
-                <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-                <li><a>Welcome: {{ user.username }}</a></li>
+            <li class="light-blue dropdown-modal">
+                <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                    <span class="user-info">
+                        Welcome: {{ user.username }}
+                    </span>
+                    <i class="ace-icon fa fa-caret-down"></i>
+                </a>
+
+                <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                    <li><a href="{% url 'post_new' %}">New Post</a></li>
+                    <li><a href="{% url 'post_draft_list' %}">Drafts</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </li>
             {% else %}
                 <li><a class="nav navbar-right" href="{% url 'login' %}"><span
                         class="glyphicon glyphicon-user"></span> Login </a>
                 </li>
             {% endif %}
+
         </ul>
     </div>
 </nav>

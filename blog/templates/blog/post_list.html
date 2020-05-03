@@ -12,7 +12,9 @@
                 </div>
             {% endfor %}
         {% else %}
-            no published post yet!
+            <h4>Sorry! We don't have draft yet! </h4>
+            <br>
+            <a class="btn btn-primary" href="{% url 'post_new' %}">New Post</a>
         {% endif %}
     </div>
 {% endblock %}

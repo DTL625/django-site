@@ -7,7 +7,7 @@
         <p class="post_content">{{ post.text|safe|linebreaksbr }}</p>
     </div>
     <hr>
-    <div class="date pretty_font">
+    <div class="date" style="font-family: 'Comic Neue', cursive; text-align: right">
         Publish at:
         {% if post.published_date %}
             {{ post.published_date }}
@@ -46,13 +46,11 @@
 
     <hr>
 
-    <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-
     <div class="container">
         {% for comment in post.comments.all %}
             <br>
             {% if user.is_authenticated or comment.approved_comment %}
-                {{ comment.created_date }}
+                {{ comment.creat_date }}
                 {% if not comment.approved_comment %}
                     <a class="bth btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
                         <span class="glyphicon glyphicon-remove"></span>
@@ -62,11 +60,14 @@
                     </a>
                 {% endif %}
                 <p>{{ comment.text|safe|linebreaks }}</p>
+
                 <p><strong>Posted by:</strong> {{ comment.author }} {{ comment.create_date|date:"Y-m-d h:i:s" }}</p>
             {% endif %}
         {% empty %}
             <p>no comments</p>
         {% endfor %}
+
+        <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
     </div>
 
 {% endblock %}
