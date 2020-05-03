@@ -14,6 +14,10 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
+    def un_publish(self):
+        self.published_date = None
+        self.save()
+
     def approve_comments(self):
         return self.comments.filter(approved_comments=True)
 
