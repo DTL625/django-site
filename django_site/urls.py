@@ -22,5 +22,6 @@ from base_app import views as base_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', base_views.index, name='index'),
+    url(r'^about/$', base_views.about, name='about'),
     url(r'^my_blog/', include('blog.urls')),
 ]

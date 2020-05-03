@@ -14,6 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_TEMPLATE_DIR = os.path.join(BASE_DIR, 'base_app/templates/')
+BASE_STATIC_DIR = os.path.join(BASE_DIR, 'base_app/static')
 BLOG_TEMPLATE_DIR = os.path.join(BASE_DIR, 'blog/templates/blog')
 BLOG_STATIC_DIR = os.path.join(BASE_DIR, 'blog/static')
 
@@ -59,7 +61,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            BLOG_TEMPLATE_DIR
+            BASE_TEMPLATE_DIR,
+            BLOG_TEMPLATE_DIR,
         ]
         ,
         'APP_DIRS': True,
@@ -126,6 +129,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [BLOG_STATIC_DIR]
+STATICFILES_DIRS = [BASE_STATIC_DIR, BLOG_STATIC_DIR]
 
 LOGIN_REDIRECT_URL = '/'
