@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
           type="text/css" media="screen" charset="utf-8">
     {#  Custom Css  #}
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
     {#  Fonts  #}
     <link href="https://fonts.googleapis.com/css?family=Comic+Neue&display=swap" rel="stylesheet">
 </head>
@@ -24,7 +24,7 @@
     <div class="container">
         <ul class="nav navbar-nav">
             <li><a class="navbar-brand big_brand" href="{% url 'post_list' %}">My Blog</a></li>
-            <li><a href="{% url 'post_list' %}">My 1Post</a></li>
+            <li><a href="{% url 'post_list' %}">My Post</a></li>
 {#            <li><a href="https://www.github.com">Github</a></li>#}
 {#            <li><a href="https://www.linkedin.com">Linkedin</a></li>#}
         </ul>
