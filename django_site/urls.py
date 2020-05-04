@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^$', base_views.index, name='index'),
     url(r'^about/$', base_views.about, name='about'),
     url(r'^my_blog/', include('blog.urls')),
+    url(r'^social_mdeia/', include('simple_social.urls')),
 ]

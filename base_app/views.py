@@ -7,4 +7,3 @@ def index(request):
 
 def about(request):
     return render(request, 'base_app/about.html')
-
