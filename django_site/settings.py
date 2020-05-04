@@ -14,8 +14,6 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BLOG_TEMPLATE_DIR = os.path.join(BASE_DIR, 'blog/templates/blog')
-BLOG_STATIC_DIR = os.path.join(BASE_DIR, 'blog/static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -59,7 +57,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
-            BLOG_TEMPLATE_DIR,
         ]
         ,
         'APP_DIRS': True,
@@ -126,6 +123,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [BLOG_STATIC_DIR]
 
 LOGIN_REDIRECT_URL = '/'
