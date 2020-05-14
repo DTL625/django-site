@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "simple_social/posts/post_base.html" %}
 
-</body>
-</html>
+{% block post_content %}
+<div class="col-md-8">
+    {% include "simple_social/posts/_post.html" %}
+</div>
+{% endblock %}

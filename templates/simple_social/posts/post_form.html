@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "simple_social/posts/post_base.html" %}
 
-</body>
-</html>
+{% load bootstrap3 %}
+
+{% block post_content %}
+    <h4>Create New Post</h4>
+    <form id="postForm" method="POST" action="{% url 'posts:create' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Post" class="btn btn-primary btn-large">
+    </form>
+{% endblock %}
