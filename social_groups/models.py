@@ -10,7 +10,7 @@ from django import template
 register = template.Library()
 
 
-class Group(models.model):
+class Group(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(allow_unicode=True, unique=True)
     description = models.TextField(blank=True, default='')
@@ -29,7 +29,7 @@ class Group(models.model):
         return reverse("groups:single", kwargs={"slug": self.slug})
 
 
-class GroupMember(models.model):
+class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name='memberships', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='user_group', on_delete=models.CASCADE)
 

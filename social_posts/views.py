@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
+from django.urls import reverse_lazy
 
 from django.http import Http404
 from django.views import generic
@@ -19,6 +19,7 @@ User = get_user_model()
 class PostList(SelectRelatedMixin, generic.ListView):
     model = models.Post
     select_related = ('user', 'group')
+    template_name = 'simple_social/posts/post_list.html'
 
 
 class UserPosts(generic.ListView):
@@ -42,7 +43,7 @@ class UserPosts(generic.ListView):
         return context
 
 
-class PosetDetail(SelectRelatedMixin, generic.DetailView):
+class PostDetail(SelectRelatedMixin, generic.DetailView):
     model = models.Post
     select_related = ('user', 'group')
 
@@ -54,7 +55,7 @@ class PosetDetail(SelectRelatedMixin, generic.DetailView):
 
 class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
     # form_class = forms.PostForm
-    fields = ('message','group')
+    fields = ('message', 'group')
     model = models.Post
 
     def form_valid(self, form):
@@ -68,7 +69,7 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
 class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     model = models.Post
     select_related = ("user", "group")
-    success_url = reverse("posts:all")
+    success_url = reverse_lazy("posts:all")
 
     def get_queryset(self):
         queryset = super().get_queryset()

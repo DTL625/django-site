@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     # social media
     'simple_social',
     'social_account',
+    'social_groups',
+    'social_posts'
 ]
 
 MIDDLEWARE = [
