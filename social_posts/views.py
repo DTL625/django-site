@@ -24,11 +24,11 @@ class PostList(SelectRelatedMixin, generic.ListView):
 
 class UserPosts(generic.ListView):
     model = models.Post
-    template_name = 'simple_social/posts/user_post_list.html'
+    template_name = "simple_social/posts/user_post_list.html"
 
     def get_queryset(self):
         try:
-            self.post.user = User.objects.prefetch_related("posts").get(
+            self.post_user = User.objects.prefetch_related("posts").get(
                 username__iexact=self.kwargs.get("username")
             )
         except User.DoesNotExist:
@@ -39,13 +39,13 @@ class UserPosts(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["post_user"] = self.post_user
-
         return context
 
 
 class PostDetail(SelectRelatedMixin, generic.DetailView):
     model = models.Post
     select_related = ('user', 'group')
+    template_name = "simple_social/posts/post_detail.html"
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -57,6 +57,7 @@ class CreatePost(LoginRequiredMixin, SelectRelatedMixin, generic.CreateView):
     # form_class = forms.PostForm
     fields = ('message', 'group')
     model = models.Post
+    template_name = "simple_social/posts/post_form.html"
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -70,6 +71,7 @@ class DeletePost(LoginRequiredMixin, SelectRelatedMixin, generic.DeleteView):
     model = models.Post
     select_related = ("user", "group")
     success_url = reverse_lazy("posts:all")
+    template_name = "simple_social/posts/post_confirm_delete.html"
 
     def get_queryset(self):
         queryset = super().get_queryset()

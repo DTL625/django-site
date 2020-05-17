@@ -10,6 +10,7 @@ from social_groups.models import Group, GroupMember
 # Create your views here.
 class CreateGroup(LoginRequiredMixin, generic.CreateView):
     fields = ('name', 'description')
+    template_name = 'simple_social/groups/group_form.html'
     model = Group
 
 class SingleGroup(generic.DetailView):
@@ -17,6 +18,7 @@ class SingleGroup(generic.DetailView):
 
 class ListGroups(generic.ListView):
     model = Group
+    template_name = 'simple_social/groups/group_list.html'
 
 class JoinGroup(LoginRequiredMixin, generic.RedirectView):
 
