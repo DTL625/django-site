@@ -6,6 +6,7 @@ from django.views import generic
 from django.shortcuts import get_object_or_404
 from django.db import IntegrityError
 from social_groups.models import Group, GroupMember
+from . import models
 
 # Create your views here.
 class CreateGroup(LoginRequiredMixin, generic.CreateView):
@@ -15,6 +16,7 @@ class CreateGroup(LoginRequiredMixin, generic.CreateView):
 
 class SingleGroup(generic.DetailView):
     model = Group
+    template_name = 'simple_social/groups/group_detail.html'
 
 class ListGroups(generic.ListView):
     model = Group
@@ -23,7 +25,7 @@ class ListGroups(generic.ListView):
 class JoinGroup(LoginRequiredMixin, generic.RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
-        return reverse('group:single', kwargs={'slug':self.kwargs.get('slug')})
+        return reverse('groups:single', kwargs={'slug':self.kwargs.get('slug')})
 
     def get(self, request, *args, **kwargs):
         group = get_object_or_404(Group, slug=self.kwargs.get("slug"))

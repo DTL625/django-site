@@ -5,15 +5,15 @@
     <h2>Member Count: {{ group.members.count }}</h2>
 
     <div class="content">
-        {% if user in group.member.all %}
-            <a href="{% url 'groups:leave slug=group.slug' %}"
+        {% if user in group.members.all %}
+            <a href="{% url 'groups:leave' slug=group.slug %}"
                class="btn btn-lg btn-fill btn-warning">
-            <span class="glyphicon glyphicon-remove-circle"></span>
+            <span class="glyphicon glyphicon-remove-circle">Leave</span>
             </a>
         {% else %}
-            <a href="{% url 'groups:join slug=group.slug' %}"
+            <a href="{% url 'groups:join' slug=group.slug %}"
                class="btn btn-lg btn-fill btn-warning">
-            <span class="glyphicon glyphicon-ok-circle"></span>
+            <span class="glyphicon glyphicon-ok-circle">Join</span>
             </a>
         {% endif %}
     </div>
@@ -25,7 +25,7 @@
         <div class="col-md-8">
         <h2>No posts in this group yet!</h2>
         </div>
-    {% esle %}
+    {% else %}
         {% for post in group.posts.all %}
             {% include "simple_social/posts/_post.html" %}
         {% endfor %}
