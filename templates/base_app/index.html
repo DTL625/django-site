@@ -1,21 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LDT Django Site</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a class="navbar-brand" href="{% url 'index' %}"> LDT DJANGO SITE</a></li>
-                <li><a class="navbar-link" href="{% url 'post_list' %}"> My Blog </a></li>
-                <li><a class="navbar-link" href="{% url 'social_home' %}"> Social Media </a></li>
-                <li><a class="navbar-link" href="{% url 'about' %}"> About Me </a></li>
-            </ul>
-        </div>
-    </nav>
-</body>
-</html>
+{% extends 'base_app/base.html' %}
+
+{% block content %}
+    <p>hello world</p>
+{% endblock %}
